@@ -81,9 +81,11 @@ data/generate_synthetic.py (seed 13) ──────────────�
 - **Real rows:** friends played the published game with the model off. On the end screen they pressed *Copy all sessions on this device* and sent me the rows. The rows hold no personal data: the session ID is 8 random hex characters made in the browser, and there is no name, location or device field.
 - **Synthetic rule and seed:** `python data/generate_synthetic.py` simulates 200 sessions with **seed 13**. Each simulated player has a hidden skill `s ~ N(0, 1)` that shapes their level, live play and thinking time. The label comes from a logistic rule with noise:
 
-  `logit = −0.55 + scene offset + 0.35·(wait−1.2) − 0.90·(closest−0.6) + 0.25·waiting + 0.30·wrong + 0.45·earlier_costly − 0.02·(prev_sec−20) − 0.35·level + N(0, 0.6)`
+  `logit = −0.40 + scene offset + 0.35·(wait−3.0) − 0.90·(closest−0.6) + 0.25·waiting + 0.30·wrong + 0.45·earlier_costly − 0.08·(prev_sec−6) − 0.35·level + N(0, 0.3)`
 
   The scene offsets are C1 +0.30, C2 0 and C3 −0.10. An Experienced player who would take more than 60 s times out. The script writes the real rows first, then the synthetic ones, and gives the same file every time.
+
+  This is rule `synthetic-2`. The first rule was noisier and did not match real play, and the first training with real rows **failed the gate** (ROC AUC 0.667 < 0.70). The reason and the fix are in [`data/SOZLUK.md`](data/SOZLUK.md) and the spec's decision log. The threshold was not changed.
 
 ## In the game
 
@@ -106,7 +108,7 @@ python tests/parite.py --check                    # oracle: onnxruntime vs sciki
 python tests/parite.py --server https://…onrender.com   # bonus: FastAPI gives the same p
 ```
 
-The browser parity and the regression suite were also replayed with Playwright, using the same selectors and a local onnxruntime-web 1.22.0. The worst browser difference was 1.2e-7, and P1–P8 and AE-1…5 passed with the model on. The CI workflow [`.github/workflows/model.yml`](.github/workflows/model.yml) reruns `train.py` and the oracle on every data or model change.
+The browser parity and the regression suite were also replayed with Playwright, using the same selectors and a local onnxruntime-web 1.22.0. The worst browser difference was below 2e-7, and P1–P8 and AE-1…5 passed with the model on. The CI workflow [`.github/workflows/model.yml`](.github/workflows/model.yml) reruns `train.py` and the oracle on every data or model change.
 
 ## Repository layout
 

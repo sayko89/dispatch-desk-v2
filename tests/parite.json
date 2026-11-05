@@ -25,7 +25,7 @@
         "onceki_maliyetli": 2,
         "onceki_karar_suresi_sn": 4
       },
-      "p": 0.98180151,
+      "p": 0.99106622,
       "support": true
     },
     {
@@ -40,7 +40,7 @@
         "onceki_maliyetli": 0,
         "onceki_karar_suresi_sn": 25
       },
-      "p": 0.15150854,
+      "p": 0.01093504,
       "support": false
     },
     {
@@ -48,14 +48,14 @@
       "input": {
         "seviye": 1,
         "sahne_no": 1,
-        "canli_bekleme_ort_dk": 1.2,
+        "canli_bekleme_ort_dk": 3.0,
         "canli_en_yakin_orani": 0.6,
         "canli_bekleyen": 1,
         "gorev_yanlis": 1,
         "onceki_maliyetli": 0,
         "onceki_karar_suresi_sn": 0
       },
-      "p": 0.56889004,
+      "p": 0.6092875,
       "support": true
     },
     {
@@ -70,7 +70,7 @@
         "onceki_maliyetli": 1,
         "onceki_karar_suresi_sn": 40
       },
-      "p": 0.14512834,
+      "p": 0.00639895,
       "support": false
     },
     {
@@ -85,7 +85,7 @@
         "onceki_maliyetli": 1,
         "onceki_karar_suresi_sn": 3.5
       },
-      "p": 0.88529116,
+      "p": 0.79233068,
       "support": true
     }
   ]

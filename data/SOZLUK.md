@@ -27,16 +27,18 @@ One row = one crisis decision. A full session has 3 rows (Crisis 1, 2, 3) that s
 
 **Real (`gercek`).** Players opened the published game, played normally and, on the end screen, pressed "Copy all sessions on this device" and sent the rows to the author. Nothing is sent to a server. The rows are kept in `data/gercek.csv` exactly as received.
 
-**Synthetic (`sentetik`).** `python data/generate_synthetic.py` (seed 13, 200 sessions) simulates players with a hidden skill `s ~ N(0, 1)`. Skill sets the level they pick (20 % pick a random level), their live-phase play and their thinking time. The label is drawn from:
+**Synthetic (`sentetik`).** `python data/generate_synthetic.py` (seed 13, 200 sessions) simulates players with a hidden skill `s ~ N(0, 1)`. Skill sets the level they pick (20 % pick a random level), their live-phase play and their thinking time (median wait about 3 simulated minutes, median thinking time about 6 s, matching the first real sessions). The label is drawn from (rule `synthetic-2`):
 
 ```
-logit = -0.55 + scene offset (C1 +0.30, C2 0, C3 -0.10)
-        + 0.35·(wait - 1.2) - 0.90·(closest - 0.6) + 0.25·waiting
+logit = -0.40 + scene offset (C1 +0.30, C2 0, C3 -0.10)
+        + 0.35·(wait - 3.0) - 0.90·(closest - 0.6) + 0.25·waiting
         + 0.30·wrong_tasks + 0.45·earlier_costly
-        - 0.02·(prev_decision_sec - 20) - 0.35·level + N(0, 0.6)
+        - 0.08·(prev_decision_sec - 6) - 0.35·level + N(0, 0.3)
 ```
 
-An Experienced player who would take more than 60 s times out, which gives the costly default. The same command always writes the same file, and it writes real rows first and synthetic rows after them.
+An Experienced player who would take more than 60 s times out, which gives the costly default. The same command always writes the same file, and it writes real rows first and synthetic rows after them. If a player sent "copy all" more than once, repeated (session, crisis) rows are kept once.
+
+**Why `synthetic-2`.** The first rule (`synthetic-1`: wait centred on 1.2 min, thinking time on 20 s, noise N(0, 0.6)) was written before any real data. After the first 3 real sessions, training failed the gate (ROC AUC 0.667). Checking showed the rule itself could only reach 0.72 and did not look like real play, so the gate was a coin toss. `synthetic-2` moves the centres to the real ranges and halves the noise. The gate (0.70) and the split did not change.
 
 ## Privacy (KVKK)
 

@@ -30,45 +30,45 @@ Predicts, when a crisis scene opens, the probability that this player will pick 
 |---|---|---|
 | `seviye` | Level (0 Just starting, 1 Know a bit, 2 Experienced) | 1.0 |
 | `sahne_no` | Crisis number (1-3) | 2.0 |
-| `canli_bekleme_ort_dk` | Average call wait in the previous live phase (sim. minutes) | 1.295 |
-| `canli_en_yakin_orani` | Share of assignments to the closest crew (0-1) | 0.56 |
+| `canli_bekleme_ort_dk` | Average call wait in the previous live phase (sim. minutes) | 3.08 |
+| `canli_en_yakin_orani` | Share of assignments to the closest crew (0-1) | 0.59 |
 | `canli_bekleyen` | Calls still waiting at the alarm | 1.0 |
-| `gorev_yanlis` | Field tasks answered wrongly so far | 2.0 |
+| `gorev_yanlis` | Field tasks answered wrongly so far | 1.0 |
 | `onceki_maliyetli` | Costly choices in earlier crises (0-2) | 0.0 |
-| `onceki_karar_suresi_sn` | Seconds spent on the previous crisis (0 for Crisis 1) | 12.5 |
+| `onceki_karar_suresi_sn` | Seconds spent on the previous crisis (0 for Crisis 1) | 3.7 |
 
 ## Coefficients (standardized features)
 | feature | weight |
 |---|---|
-| `seviye` | +0.071 |
-| `sahne_no` | -0.065 |
-| `canli_bekleme_ort_dk` | +0.164 |
-| `canli_en_yakin_orani` | -0.241 |
-| `canli_bekleyen` | +0.183 |
-| `gorev_yanlis` | +0.561 |
-| `onceki_maliyetli` | +0.161 |
-| `onceki_karar_suresi_sn` | -0.354 |
-| `intercept` | +0.379 |
+| `seviye` | -0.242 |
+| `sahne_no` | +0.019 |
+| `canli_bekleme_ort_dk` | +0.753 |
+| `canli_en_yakin_orani` | +0.075 |
+| `canli_bekleyen` | +0.567 |
+| `gorev_yanlis` | +0.655 |
+| `onceki_maliyetli` | +0.164 |
+| `onceki_karar_suresi_sn` | -0.660 |
+| `intercept` | +0.609 |
 
 ## Training data
-`data/oturumlar.csv` from the GitHub repository: 600 rows, 0 real sessions (0 rows) and 600 synthetic rows from a seeded rule (`data/generate_synthetic.py`, seed 13). No personal data: the session ID is random and no name, location or device field is collected.
+`data/oturumlar.csv` from the GitHub repository: 609 rows, 3 real sessions (9 rows) and 600 synthetic rows from a seeded rule (`data/generate_synthetic.py`, seed 13). No personal data: the session ID is random and no name, location or device field is collected.
 
 ## Evaluation (stratified 30 % hold-out, seed 13)
 Acceptance gate: ROC AUC >= 0.7 (committed in `spec.md` before training).
 
 | metric | value |
 |---|---|
-| roc_auc | 0.7215 |
-| accuracy | 0.6778 |
-| f1 | 0.7521 |
-| brier | 0.2064 |
+| roc_auc | 0.7817 |
+| accuracy | 0.7322 |
+| f1 | 0.7763 |
+| brier | 0.1856 |
 | roc_auc_real_only | None |
-| n_test_real | 0 |
-| n_rows | 600 |
-| n_rows_real | 0 |
-| n_sessions_real | 0 |
-| positive_rate | 0.5783 |
-| onnx_max_abs_diff | 7.65e-08 |
+| n_test_real | 3 |
+| n_rows | 609 |
+| n_rows_real | 9 |
+| n_sessions_real | 3 |
+| positive_rate | 0.5862 |
+| onnx_max_abs_diff | 1.01e-07 |
 
 ## Limitations and risks
 - Most rows are synthetic, so the weights partly reflect the generator's rule. The real-only AUC above is the honest number, and it rests on few sessions.

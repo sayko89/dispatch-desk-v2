@@ -25,12 +25,12 @@
     {
       "name": "canli_bekleme_ort_dk",
       "label": "Average call wait in the previous live phase (sim. minutes)",
-      "example": 1.295
+      "example": 3.08
     },
     {
       "name": "canli_en_yakin_orani",
       "label": "Share of assignments to the closest crew (0-1)",
-      "example": 0.56
+      "example": 0.59
     },
     {
       "name": "canli_bekleyen",
@@ -40,7 +40,7 @@
     {
       "name": "gorev_yanlis",
       "label": "Field tasks answered wrongly so far",
-      "example": 2.0
+      "example": 1.0
     },
     {
       "name": "onceki_maliyetli",
@@ -50,7 +50,7 @@
     {
       "name": "onceki_karar_suresi_sn",
       "label": "Seconds spent on the previous crisis (0 for Crisis 1)",
-      "example": 12.5
+      "example": 3.7
     }
   ],
   "decision_threshold": 0.5,
@@ -61,28 +61,28 @@
     "parity_tol": 0.0001
   },
   "coefficients": {
-    "seviye": 0.0712,
-    "sahne_no": -0.0648,
-    "canli_bekleme_ort_dk": 0.164,
-    "canli_en_yakin_orani": -0.241,
-    "canli_bekleyen": 0.183,
-    "gorev_yanlis": 0.5615,
-    "onceki_maliyetli": 0.1611,
-    "onceki_karar_suresi_sn": -0.3538,
-    "intercept": 0.3793
+    "seviye": -0.2416,
+    "sahne_no": 0.0189,
+    "canli_bekleme_ort_dk": 0.7528,
+    "canli_en_yakin_orani": 0.0751,
+    "canli_bekleyen": 0.5668,
+    "gorev_yanlis": 0.6549,
+    "onceki_maliyetli": 0.1641,
+    "onceki_karar_suresi_sn": -0.6604,
+    "intercept": 0.609
   },
   "metrics": {
-    "roc_auc": 0.7215,
-    "accuracy": 0.6778,
-    "f1": 0.7521,
-    "brier": 0.2064,
+    "roc_auc": 0.7817,
+    "accuracy": 0.7322,
+    "f1": 0.7763,
+    "brier": 0.1856,
     "roc_auc_real_only": null,
-    "n_test_real": 0,
-    "n_rows": 600,
-    "n_rows_real": 0,
-    "n_sessions_real": 0,
-    "positive_rate": 0.5783,
-    "onnx_max_abs_diff": 7.65e-08
+    "n_test_real": 3,
+    "n_rows": 609,
+    "n_rows_real": 9,
+    "n_sessions_real": 3,
+    "positive_rate": 0.5862,
+    "onnx_max_abs_diff": 1.01e-07
   },
   "seed": 13,
   "sklearn_version": "1.9.1",

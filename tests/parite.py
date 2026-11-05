@@ -29,7 +29,7 @@ CASES = [
     ("AE-7 steady player, Crisis 3",
      dict(seviye=2, sahne_no=3, canli_bekleme_ort_dk=0.3, canli_en_yakin_orani=1, canli_bekleyen=0, gorev_yanlis=0, onceki_maliyetli=0, onceki_karar_suresi_sn=25)),
     ("Typical player, Crisis 1",
-     dict(seviye=1, sahne_no=1, canli_bekleme_ort_dk=1.2, canli_en_yakin_orani=0.6, canli_bekleyen=1, gorev_yanlis=1, onceki_maliyetli=0, onceki_karar_suresi_sn=0)),
+     dict(seviye=1, sahne_no=1, canli_bekleme_ort_dk=3.0, canli_en_yakin_orani=0.6, canli_bekleyen=1, gorev_yanlis=1, onceki_maliyetli=0, onceki_karar_suresi_sn=0)),
     ("New player, quick and careful, Crisis 2",
      dict(seviye=0, sahne_no=2, canli_bekleme_ort_dk=0.8, canli_en_yakin_orani=0.9, canli_bekleyen=0, gorev_yanlis=0, onceki_maliyetli=1, onceki_karar_suresi_sn=40)),
     ("Experienced but rushed, Crisis 2",

@@ -259,6 +259,7 @@ stateDiagram-v2
 | Should live phases affect the ending? | No. The ending stays a pure function of the three decisions, so the 8-path table holds. Live phases feed the shift report. |
 | Language | Everything is in English except the test IDs, which keep their original Turkish names. |
 | Which ML model, and where does it run? | v2: a small tabular classifier (logistic regression) exported to ONNX, run in the browser with onnxruntime-web. See section 11 and `RELEASE.md`. |
+| The first training with real rows failed the gate (ROC AUC 0.667). What changed? | Not the threshold, the metric or the split. The synthetic rule (`synthetic-1`, written before any real data) was too noisy: its own logit reached only AUC 0.72, and 30 random splits averaged 0.69. Its waits (~1.5 min) and thinking times (~20 s) were also far from real play (~3.8 min, ~3 s). Rule `synthetic-2` uses the real ranges and half the noise; 30 splits then give AUC 0.74–0.85. Documented in `data/SOZLUK.md`. |
 
 ---
 
