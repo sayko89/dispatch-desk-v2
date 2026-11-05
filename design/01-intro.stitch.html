@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_blank" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-primary-container": "#5b0015", "error-container": "#93000a", "inverse-primary": "#be0036", "bg-subtle": "#06102C", "on-background": "#dbe1ff", "surface-container-low": "#0e1a3a", "background": "#051131", "on-surface-variant": "#e6bcbd", "surface-container-lowest": "#010c2c", "primary-container": "#ff5167", "secondary": "#a3eeff", "tertiary": "#f7be36", "surface-dim": "#051131", "tertiary-container": "#b88900", "surface": "#051131", "tertiary-fixed": "#ffdea0", "surface-container": "#131e3e", "neon-red": "#FF2D55", "outline": "#ad8888", "on-primary-fixed": "#40000c", "text-primary": "#E9F1FF", "on-error": "#690005", "on-tertiary-fixed": "#261900", "panel-elevated": "#0F1E47", "on-tertiary-container": "#382700", "inverse-on-surface": "#242f50", "on-tertiary-fixed-variant": "#5c4300", "bg": "#030920", "neon-violet": "#AE8FFF", "border-strong": "#27438A", "text-muted": "#8598C8", "on-primary": "#680019", "secondary-fixed-dim": "#02daf7", "text-dim": "#50659A", "secondary-container": "#02daf7", "on-error-container": "#ffdad6", "secondary-fixed": "#a3eeff", "primary": "#ffb3b5", "surface-variant": "#293355", "neon-green": "#22F0A3", "on-surface": "#dbe1ff", "on-primary-fixed-variant": "#920027", "inverse-surface": "#dbe1ff", "on-secondary-fixed-variant": "#004e5a", "primary-fixed-dim": "#ffb3b5", "neon-amber": "#FFC53D", "surface-tint": "#ffb3b5", "on-secondary-container": "#005b68", "border-subtle": "#1A2C60", "error": "#ffb4ab", "on-tertiary": "#402d00", "on-secondary": "#00363e", "tertiary-fixed-dim": "#f7be36", "neon-cyan": "#25E2FF", "outline-variant": "#5d3f40", "surface-bright": "#2d3859", "surface-container-highest": "#293355", "on-secondary-fixed": "#001f25", "primary-fixed": "#ffdada", "surface-container-high": "#1e2849", "panel": "#0A1636" }, borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, spacing: { "space-xs": "0.25rem", "space-sm": "0.5rem", "space-lg": "1rem", "gutter": "0.75rem", "space-xl": "1.5rem", "margin": "1rem", "space-md": "0.75rem" }, fontFamily: { "telemetry-sm": ["JetBrains Mono"], "telemetry-lg": ["JetBrains Mono"], "headline-md": ["Space Grotesk"], "headline-sm": ["Space Grotesk"], "body-sm": ["IBM Plex Sans"], "body-lg": ["IBM Plex Sans"], "body-md": ["IBM Plex Sans"], "headline-xl": ["Space Grotesk"], "telemetry-md": ["JetBrains Mono"], "headline-lg": ["Space Grotesk"], "label-code": ["JetBrains Mono"] }, fontSize: { "telemetry-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "500" }], "telemetry-lg": ["18px", { lineHeight: "22px", letterSpacing: "0.02em", fontWeight: "700" }], "headline-md": ["20px", { lineHeight: "26px", letterSpacing: "0em", fontWeight: "600" }], "headline-sm": ["16px", { lineHeight: "22px", letterSpacing: "0.01em", fontWeight: "600" }], "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }], "body-lg": ["16px", { lineHeight: "24px", fontWeight: "500" }], "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }], "headline-xl": ["32px", { lineHeight: "38px", letterSpacing: "-0.02em", fontWeight: "700" }], "telemetry-md": ["13px", { lineHeight: "18px", letterSpacing: "0.01em", fontWeight: "500" }], "headline-lg": ["24px", { lineHeight: "30px", letterSpacing: "-0.01em", fontWeight: "600" }], "label-code": ["10px", { lineHeight: "12px", letterSpacing: "0.08em", fontWeight: "700" }] } } } }</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#030920;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-bg text-on-surface font-body-md flex flex-col min-h-screen"><main class="flex flex-col relative w-full pt-safe pb-safe bg-bg min-h-screen"><div class="flex flex-col w-full text-on-surface p-margin gap-space-lg selection:bg-neon-red selection:text-surface-lowest">
+<!-- Operational Header Badge -->
+<div class="flex items-center gap-space-sm pt-space-xs">
+<div class="w-3.5 h-3.5 relative flex items-center justify-center shrink-0">
+<div class="w-1 h-3.5 bg-neon-red rounded-none shadow-[0_0_8px_#FF2D55]"></div>
+<div class="h-1 w-3.5 bg-neon-red rounded-none absolute shadow-[0_0_8px_#FF2D55]"></div>
+</div>
+<span class="font-label-code text-label-code text-text-muted tracking-widest uppercase">
+      112 COMMAND CENTER · NIGHT SHIFT
+    </span>
+</div>
+<!-- Primary Title & Narrative -->
+<div class="flex flex-col gap-space-xs">
+<div class="font-headline-xl text-headline-xl tracking-tight leading-none uppercase flex flex-col font-bold">
+<span class="text-text-primary">DISPATCH</span>
+<span class="text-neon-red drop-shadow-[0_0_16px_rgba(255,45,85,0.7)]">DESK</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed mt-space-xs">
+      Friday night, 21:32. Six ambulances, three stations and three hospitals are on your screen. Soon the map service will slow down and a red-code call will come in.
+    </p>
+</div>
+<!-- ECG Heartbeat Line Divider -->
+<div class="w-full h-8 relative flex items-center overflow-hidden">
+<svg class="w-full h-8 text-neon-red drop-shadow-[0_0_6px_rgba(255,45,85,0.8)]" fill="none" preserveaspectratio="none" viewbox="0 0 400 32">
+<path d="M0,16 L120,16 L128,16 L134,2 L140,30 L146,8 L152,22 L156,16 L164,16 L280,16 L288,16 L294,4 L300,28 L306,10 L312,20 L316,16 L400,16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+<!-- Live City Radar / Dispatch Map Module -->
+<div class="relative w-full h-64 bg-bg-subtle rounded-xl overflow-hidden shadow-2xl flex flex-col justify-between p-space-sm">
+<!-- Map Surface Graphics -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Street Grid -->
+<pattern height="28" id="street-grid" patternunits="userSpaceOnUse" width="28">
+<path d="M 28 0 L 0 0 0 28" fill="none" opacity="0.65" stroke="#13265A" stroke-width="0.8"></path>
+</pattern>
+<!-- Vehicle Cyan Glow Filter -->
+<filter height="140%" id="cyan-glow" width="140%" x="-20%" y="-20%">
+<fedropshadow dx="0" dy="0" flood-color="#25E2FF" flood-opacity="0.9" stddeviation="2.5"></fedropshadow>
+</filter>
+<!-- Red Pulse Filter -->
+<filter height="140%" id="red-glow" width="140%" x="-20%" y="-20%">
+<fedropshadow dx="0" dy="0" flood-color="#FF2D55" flood-opacity="0.9" stddeviation="3"></fedropshadow>
+</filter>
+</defs>
+<rect fill="#06102C" height="100%" width="100%"></rect>
+<rect fill="url(#street-grid)" height="100%" width="100%"></rect>
+<!-- Diagonal Dark Blue River Bosphorus Strait Slice -->
+<path d="M-20,190 Q90,140 180,110 T420,30 L420,-10 L-20,-10 Z" fill="#0A2352" opacity="0.75"></path>
+<path d="M-10,210 Q90,150 200,115 T420,40" fill="none" opacity="0.45" stroke="#0F2F6C" stroke-linecap="round" stroke-width="32"></path>
+<!-- Major Arterials -->
+<line stroke="#183170" stroke-width="1.5" x1="0" x2="400" y1="90" y2="90"></line>
+<line stroke="#183170" stroke-width="1.5" x1="80" x2="80" y1="0" y2="260"></line>
+<line stroke="#183170" stroke-width="1.5" x1="260" x2="260" y1="0" y2="260"></line>
+<!-- Bridges -->
+<g>
+<rect fill="#1A2C60" height="12" rx="1" width="22" x="135" y="105"></rect>
+<text fill="#8598C8" font-family="JetBrains Mono" font-size="8" font-weight="700" letter-spacing="0.5" text-anchor="middle" x="146" y="125">N. BRIDGE</text>
+<rect fill="#1A2C60" height="12" rx="1" width="22" x="245" y="60"></rect>
+<text fill="#8598C8" font-family="JetBrains Mono" font-size="8" font-weight="700" letter-spacing="0.5" text-anchor="middle" x="256" y="80">S. BRIDGE</text>
+</g>
+<!-- Active Ambulance Vectors & Trails -->
+<path d="M45,210 L85,180 L115,180" fill="none" opacity="0.7" stroke="#25E2FF" stroke-dasharray="2,3" stroke-width="1.2"></path>
+<circle cx="115" cy="180" fill="#FFFFFF" filter="url(#cyan-glow)" r="3"></circle>
+<path d="M220,240 L220,185 L270,140" fill="none" opacity="0.7" stroke="#25E2FF" stroke-dasharray="2,3" stroke-width="1.2"></path>
+<circle cx="270" cy="140" fill="#FFFFFF" filter="url(#cyan-glow)" r="3"></circle>
+<path d="M330,40 L300,60" fill="none" opacity="0.7" stroke="#25E2FF" stroke-dasharray="2,3" stroke-width="1.2"></path>
+<circle cx="300" cy="60" fill="#FFFFFF" filter="url(#cyan-glow)" r="3"></circle>
+<!-- Incident Call Dots with Radar Rings -->
+<!-- Amber Call -->
+<circle class="animate-ping" cx="70" cy="80" fill="none" opacity="0.5" r="7" stroke="#FFC53D" stroke-width="1" style="transform-origin: 70px 80px;"></circle>
+<circle cx="70" cy="80" fill="#FFC53D" r="3"></circle>
+<!-- Green Call (Resolved / En Route) -->
+<circle class="animate-ping" cx="230" cy="210" fill="none" opacity="0.4" r="7" stroke="#22F0A3" stroke-width="1" style="transform-origin: 230px 210px;"></circle>
+<circle cx="230" cy="210" fill="#22F0A3" r="3"></circle>
+<!-- Station 7 (Cyan Square) -->
+<rect fill="#0A1636" height="13" stroke="#25E2FF" stroke-width="1.2" width="13" x="25" y="130"></rect>
+<text fill="#25E2FF" font-family="JetBrains Mono" font-size="8.5" font-weight="700" text-anchor="middle" x="31" y="152">STN 7</text>
+<!-- Station 5 (Cyan Square) -->
+<rect fill="#0A1636" height="13" stroke="#25E2FF" stroke-width="1.2" width="13" x="175" y="150"></rect>
+<text fill="#25E2FF" font-family="JetBrains Mono" font-size="8.5" font-weight="700" text-anchor="middle" x="181" y="172">STN 5</text>
+<!-- Station 3 (Cyan Square) -->
+<rect fill="#0A1636" height="13" stroke="#25E2FF" stroke-width="1.2" width="13" x="330" y="85"></rect>
+<text fill="#25E2FF" font-family="JetBrains Mono" font-size="8.5" font-weight="700" text-anchor="middle" x="336" y="107">STN 3</text>
+</svg>
+<!-- Overlay Corner Tag: LIVE Signal -->
+<div class="relative z-10 flex items-center justify-between w-full pointer-events-none">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-panel/90 backdrop-blur">
+<span class="w-2 h-2 rounded-full bg-neon-red animate-pulse shadow-[0_0_6px_#FF2D55]"></span>
+<span class="font-label-code text-label-code text-text-primary tracking-widest font-bold">LIVE TELEMETRY</span>
+</div>
+<span class="font-telemetry-sm text-telemetry-sm text-text-dim">GRID 41.0082° N, 28.9784° E</span>
+</div>
+<!-- Hospital Status Cluster Badges (HTML Overlays for sharp micro-readouts) -->
+<div class="relative z-10 flex justify-between items-end gap-1.5 w-full pointer-events-none pb-0.5">
+<!-- Hospital 1: Haydarpaşa -->
+<div class="flex flex-col gap-0.5 bg-panel/90 p-1.5 rounded w-[31%] shrink-0">
+<div class="flex items-center gap-1">
+<div class="w-3.5 h-3.5 rounded-sm bg-neon-red flex items-center justify-center shrink-0">
+<span class="text-bg text-[9px] font-bold leading-none font-telemetry-sm">✚</span>
+</div>
+<span class="font-label-code text-[9px] text-text-primary truncate">Haydarpaşa</span>
+</div>
+<div class="w-full bg-bg-subtle h-1 rounded-none overflow-hidden mt-0.5">
+<div class="bg-neon-red h-full w-[85%]"></div>
+</div>
+<div class="flex justify-between font-label-code text-[8px] text-text-dim">
+<span>CAP</span>
+<span class="text-neon-red">85%</span>
+</div>
+</div>
+<!-- Hospital 2: Kadıköy State -->
+<div class="flex flex-col gap-0.5 bg-panel/90 p-1.5 rounded w-[33%] shrink-0">
+<div class="flex items-center gap-1">
+<div class="w-3.5 h-3.5 rounded-sm bg-neon-red flex items-center justify-center shrink-0">
+<span class="text-bg text-[9px] font-bold leading-none font-telemetry-sm">✚</span>
+</div>
+<span class="font-label-code text-[9px] text-text-primary truncate">Kadıköy St.</span>
+</div>
+<div class="w-full bg-bg-subtle h-1 rounded-none overflow-hidden mt-0.5">
+<div class="bg-neon-amber h-full w-[62%]"></div>
+</div>
+<div class="flex justify-between font-label-code text-[8px] text-text-dim">
+<span>CAP</span>
+<span class="text-neon-amber">62%</span>
+</div>
+</div>
+<!-- Hospital 3: Göztepe Hosp. -->
+<div class="flex flex-col gap-0.5 bg-panel/90 p-1.5 rounded w-[31%] shrink-0">
+<div class="flex items-center gap-1">
+<div class="w-3.5 h-3.5 rounded-sm bg-neon-red flex items-center justify-center shrink-0">
+<span class="text-bg text-[9px] font-bold leading-none font-telemetry-sm">✚</span>
+</div>
+<span class="font-label-code text-[9px] text-text-primary truncate">Göztepe</span>
+</div>
+<div class="w-full bg-bg-subtle h-1 rounded-none overflow-hidden mt-0.5">
+<div class="bg-neon-green h-full w-[38%]"></div>
+</div>
+<div class="flex justify-between font-label-code text-[8px] text-text-dim">
+<span>CAP</span>
+<span class="text-neon-green">38%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Configuration Segmented Control Form -->
+<div class="flex flex-col gap-space-md">
+<!-- Group 1: Level -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-baseline justify-between">
+<label class="font-label-code text-label-code text-text-muted uppercase">Your Level</label>
+<span class="font-body-sm text-body-sm text-text-dim">the story adapts to it</span>
+</div>
+<div class="grid grid-cols-3 gap-1.5 bg-panel p-1 rounded-full" id="level-selector">
+<button class="level-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full text-text-muted hover:text-text-primary transition-colors" type="button">
+          Just starting
+        </button>
+<button class="level-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full bg-panel-elevated text-text-primary font-bold shadow-[0_0_8px_rgba(255,45,85,0.45)] outline outline-1 outline-neon-red" type="button">
+          Know a bit
+        </button>
+<button class="level-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full text-text-muted hover:text-text-primary transition-colors" type="button">
+          Experienced
+        </button>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted px-1 mt-0.5">
+        Recommended: balanced technical depth with contextual architecture cues.
+      </p>
+</div>
+<!-- Group 2: Role -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-code text-label-code text-text-muted uppercase">Your Role</label>
+<div class="grid grid-cols-3 gap-1.5 bg-panel p-1 rounded-full" id="role-selector">
+<button class="role-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full bg-panel-elevated text-neon-cyan font-bold shadow-[0_0_8px_rgba(37,226,255,0.35)] outline outline-1 outline-neon-cyan" type="button">
+          Developer
+        </button>
+<button class="role-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full text-text-muted hover:text-text-primary transition-colors" type="button">
+          Test engineer
+        </button>
+<button class="role-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full text-text-muted hover:text-text-primary transition-colors" type="button">
+          Product mgr
+        </button>
+</div>
+</div>
+<!-- Group 3: Goal -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-code text-label-code text-text-muted uppercase">Your Goal</label>
+<div class="grid grid-cols-3 gap-1.5 bg-panel p-1 rounded-full" id="goal-selector">
+<button class="goal-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full bg-panel-elevated text-neon-cyan font-bold shadow-[0_0_8px_rgba(37,226,255,0.35)] outline outline-1 outline-neon-cyan" type="button">
+          Architecture
+        </button>
+<button class="goal-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full text-text-muted hover:text-text-primary transition-colors" type="button">
+          Scaling
+        </button>
+<button class="goal-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full text-text-muted hover:text-text-primary transition-colors" type="button">
+          Data privacy
+        </button>
+</div>
+</div>
+</div>
+<!-- On Shift Crew Section -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-code text-label-code text-text-muted uppercase tracking-wider">
+        ON SHIFT TONIGHT
+      </span>
+<span class="font-label-code text-label-code text-text-dim">6 ACTIVE STATIONS</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Derya -->
+<div class="flex items-center gap-2.5 bg-panel p-2.5 rounded-lg">
+<div class="w-7 h-7 rounded-full bg-bg-subtle text-neon-amber font-telemetry-md font-bold flex items-center justify-center shrink-0 shadow-[0_0_6px_rgba(255,197,61,0.25)]">
+          D
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-text-primary font-semibold truncate leading-tight">Derya</span>
+<span class="font-label-code text-[10px] text-text-muted truncate">Dispatch Sup.</span>
+</div>
+</div>
+<!-- Kaan -->
+<div class="flex items-center gap-2.5 bg-panel p-2.5 rounded-lg">
+<div class="w-7 h-7 rounded-full bg-bg-subtle text-neon-cyan font-telemetry-md font-bold flex items-center justify-center shrink-0 shadow-[0_0_6px_rgba(37,226,255,0.25)]">
+          K
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-text-primary font-semibold truncate leading-tight">Kaan</span>
+<span class="font-label-code text-[10px] text-text-muted truncate">On-Call SRE</span>
+</div>
+</div>
+<!-- Ece -->
+<div class="flex items-center gap-2.5 bg-panel p-2.5 rounded-lg">
+<div class="w-7 h-7 rounded-full bg-bg-subtle text-neon-green font-telemetry-md font-bold flex items-center justify-center shrink-0 shadow-[0_0_6px_rgba(34,240,163,0.25)]">
+          E
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-text-primary font-semibold truncate leading-tight">Ece</span>
+<span class="font-label-code text-[10px] text-text-muted truncate">Test Engineer</span>
+</div>
+</div>
+<!-- Burak -->
+<div class="flex items-center gap-2.5 bg-panel p-2.5 rounded-lg">
+<div class="w-7 h-7 rounded-full bg-bg-subtle text-[#FF8F3F] font-telemetry-md font-bold flex items-center justify-center shrink-0 shadow-[0_0_6px_rgba(255,143,63,0.25)]">
+          B
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-text-primary font-semibold truncate leading-tight">Burak</span>
+<span class="font-label-code text-[10px] text-text-muted truncate">Product Mgr</span>
+</div>
+</div>
+<!-- Selin -->
+<div class="flex items-center gap-2.5 bg-panel p-2.5 rounded-lg">
+<div class="w-7 h-7 rounded-full bg-bg-subtle text-neon-violet font-telemetry-md font-bold flex items-center justify-center shrink-0 shadow-[0_0_6px_rgba(174,143,255,0.25)]">
+          S
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-text-primary font-semibold truncate leading-tight">Selin</span>
+<span class="font-label-code text-[10px] text-text-muted truncate">DPO Lead</span>
+</div>
+</div>
+<!-- Dr. Mert -->
+<div class="flex items-center gap-2.5 bg-panel p-2.5 rounded-lg">
+<div class="w-7 h-7 rounded-full bg-bg-subtle text-neon-red font-telemetry-md font-bold flex items-center justify-center shrink-0 shadow-[0_0_6px_rgba(255,45,85,0.35)]">
+          M
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-md text-body-md text-text-primary font-semibold truncate leading-tight">Dr. Mert</span>
+<span class="font-label-code text-[10px] text-text-muted truncate">ER Physician</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Telemetry Facts Banner -->
+<div class="w-full bg-panel p-2.5 rounded-lg text-center overflow-x-auto whitespace-nowrap">
+<span class="font-label-code text-[11px] text-text-muted tracking-tight">
+      6 ambulances · 3 stations · 3 hospitals · 3 crises · 5 field tasks
+    </span>
+</div>
+<!-- Critical Execution Action -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<button class="w-full py-4 px-space-lg bg-neon-red text-bg font-headline-sm text-headline-sm uppercase font-bold rounded-lg tracking-wider transition-all duration-150 active:scale-[0.985] shadow-[0_0_20px_rgba(255,45,85,0.55)] flex items-center justify-center gap-2" id="start-shift-btn" type="button">
+<span>Take the shift</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<!-- Disclaimer / System Note -->
+<p class="font-body-sm text-body-sm text-text-dim text-center pb-space-xs">
+      Prototype. The city, people and cases are fictional.
+    </p>
+</div>
+</div>
+<script>
+  // Interactive pill switch micro-actions for level, role, and goal
+  function setupPillGroup(containerId, activeClassList) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const buttons = container.querySelectorAll('button');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => {
+          b.className = 'py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full text-text-muted hover:text-text-primary transition-colors';
+        });
+        btn.className = activeClassList;
+      });
+    });
+  }
+
+  setupPillGroup('level-selector', 'level-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full bg-panel-elevated text-text-primary font-bold shadow-[0_0_8px_rgba(255,45,85,0.45)] outline outline-1 outline-neon-red');
+  setupPillGroup('role-selector', 'role-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full bg-panel-elevated text-neon-cyan font-bold shadow-[0_0_8px_rgba(37,226,255,0.35)] outline outline-1 outline-neon-cyan');
+  setupPillGroup('goal-selector', 'goal-opt py-2 px-1 text-center font-telemetry-sm text-telemetry-sm rounded-full bg-panel-elevated text-neon-cyan font-bold shadow-[0_0_8px_rgba(37,226,255,0.35)] outline outline-1 outline-neon-cyan');
+
+  // Trigger feedback animation on CTA button
+  const shiftBtn = document.getElementById('start-shift-btn');
+  if (shiftBtn) {
+    shiftBtn.addEventListener('click', () => {
+      shiftBtn.innerHTML = `<span>Connecting Dispatch Link...</span><span class="material-symbols-outlined text-lg animate-spin">sync</span>`;
+      setTimeout(() => {
+        shiftBtn.innerHTML = `<span>Shift Initialized</span><span class="material-symbols-outlined text-lg">check_circle</span>`;
+      }, 700);
+    });
+  }
+</script></main></body></html>

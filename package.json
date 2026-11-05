@@ -1,0 +1,14 @@
+{
+  "name": "dispatch-desk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SE Primer: Dispatch Desk, YZM301 assignment",
+  "scripts": {
+    "cy:open": "cypress open --e2e",
+    "test:e2e": "cypress run --e2e --spec cypress/e2e/paths.cy.js,cypress/e2e/acceptance.cy.js",
+    "demo": "cypress run --e2e --spec cypress/e2e/demo.cy.js"
+  },
+  "devDependencies": {
+    "cypress": "16.2.0"
+  }
+}
