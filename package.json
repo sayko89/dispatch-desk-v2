@@ -1,12 +1,16 @@
 {
-  "name": "dispatch-desk",
-  "version": "1.0.0",
+  "name": "dispatch-desk-v2",
+  "version": "2.0.0",
   "private": true,
-  "description": "SE Primer: Dispatch Desk, YZM301 assignment",
+  "description": "SE Primer: Dispatch Desk v2, an on-device ML layer (YZM301)",
   "scripts": {
     "cy:open": "cypress open --e2e",
     "test:e2e": "cypress run --e2e --spec cypress/e2e/paths.cy.js,cypress/e2e/acceptance.cy.js",
-    "demo": "cypress run --e2e --spec cypress/e2e/demo.cy.js"
+    "demo": "cypress run --e2e --spec cypress/e2e/demo.cy.js",
+    "test:model": "cypress run --e2e --spec cypress/e2e/parite.cy.js,cypress/e2e/model.cy.js",
+    "test:regression": "cypress run --e2e --env rollout=on --spec cypress/e2e/paths.cy.js,cypress/e2e/acceptance.cy.js",
+    "test:all": "npm run test:e2e && npm run test:regression && npm run test:model",
+    "demo:v2": "cypress run --e2e --spec cypress/e2e/demo-v2.cy.js"
   },
   "devDependencies": {
     "cypress": "16.2.0"

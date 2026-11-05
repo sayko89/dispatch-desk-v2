@@ -1,0 +1,17 @@
+name: model
+on:
+  push:
+    paths: ["data/**", "train.py", "tests/**", "model/**", "requirements.txt"]
+  workflow_dispatch:
+jobs:
+  train-and-parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13" }
+      - run: pip install -r requirements.txt
+      - name: Train with the acceptance gate (fails below ROC AUC 0.70)
+        run: python train.py
+      - name: Python oracle vs committed parity reference
+        run: python tests/parite.py --check

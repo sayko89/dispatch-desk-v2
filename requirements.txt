@@ -1,0 +1,8 @@
+# Training, the Python oracle and the parity check (python train.py, python tests/parite.py)
+scikit-learn==1.9.1
+pandas>=2.2
+numpy>=2.0
+skl2onnx==1.20.0
+onnx>=1.17
+onnxruntime>=1.20
+huggingface_hub>=0.30

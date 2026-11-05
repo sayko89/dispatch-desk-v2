@@ -1,0 +1,92 @@
+{
+  "model_version": "2.0.0",
+  "tolerance": 0.0001,
+  "decision_threshold": 0.5,
+  "features": [
+    "seviye",
+    "sahne_no",
+    "canli_bekleme_ort_dk",
+    "canli_en_yakin_orani",
+    "canli_bekleyen",
+    "gorev_yanlis",
+    "onceki_maliyetli",
+    "onceki_karar_suresi_sn"
+  ],
+  "cases": [
+    {
+      "name": "AE-6 struggling player, Crisis 3",
+      "input": {
+        "seviye": 0,
+        "sahne_no": 3,
+        "canli_bekleme_ort_dk": 3.5,
+        "canli_en_yakin_orani": 0,
+        "canli_bekleyen": 4,
+        "gorev_yanlis": 5,
+        "onceki_maliyetli": 2,
+        "onceki_karar_suresi_sn": 4
+      },
+      "p": 0.98180151,
+      "support": true
+    },
+    {
+      "name": "AE-7 steady player, Crisis 3",
+      "input": {
+        "seviye": 2,
+        "sahne_no": 3,
+        "canli_bekleme_ort_dk": 0.3,
+        "canli_en_yakin_orani": 1,
+        "canli_bekleyen": 0,
+        "gorev_yanlis": 0,
+        "onceki_maliyetli": 0,
+        "onceki_karar_suresi_sn": 25
+      },
+      "p": 0.15150854,
+      "support": false
+    },
+    {
+      "name": "Typical player, Crisis 1",
+      "input": {
+        "seviye": 1,
+        "sahne_no": 1,
+        "canli_bekleme_ort_dk": 1.2,
+        "canli_en_yakin_orani": 0.6,
+        "canli_bekleyen": 1,
+        "gorev_yanlis": 1,
+        "onceki_maliyetli": 0,
+        "onceki_karar_suresi_sn": 0
+      },
+      "p": 0.56889004,
+      "support": true
+    },
+    {
+      "name": "New player, quick and careful, Crisis 2",
+      "input": {
+        "seviye": 0,
+        "sahne_no": 2,
+        "canli_bekleme_ort_dk": 0.8,
+        "canli_en_yakin_orani": 0.9,
+        "canli_bekleyen": 0,
+        "gorev_yanlis": 0,
+        "onceki_maliyetli": 1,
+        "onceki_karar_suresi_sn": 40
+      },
+      "p": 0.14512834,
+      "support": false
+    },
+    {
+      "name": "Experienced but rushed, Crisis 2",
+      "input": {
+        "seviye": 2,
+        "sahne_no": 2,
+        "canli_bekleme_ort_dk": 2.4,
+        "canli_en_yakin_orani": 0.4,
+        "canli_bekleyen": 2,
+        "gorev_yanlis": 3,
+        "onceki_maliyetli": 1,
+        "onceki_karar_suresi_sn": 3.5
+      },
+      "p": 0.88529116,
+      "support": true
+    }
+  ]
+}
