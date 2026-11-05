@@ -2,3 +2,5 @@ node_modules/
 cypress/videos/
 cypress/screenshots/
 .DS_Store
+__pycache__/
+*.pyc
