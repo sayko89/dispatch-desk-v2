@@ -25,7 +25,7 @@
     {
       "name": "canli_bekleme_ort_dk",
       "label": "Average call wait in the previous live phase (sim. minutes)",
-      "example": 3.08
+      "example": 3.11
     },
     {
       "name": "canli_en_yakin_orani",
@@ -61,28 +61,28 @@
     "parity_tol": 0.0001
   },
   "coefficients": {
-    "seviye": -0.2416,
-    "sahne_no": 0.0189,
-    "canli_bekleme_ort_dk": 0.7528,
-    "canli_en_yakin_orani": 0.0751,
-    "canli_bekleyen": 0.5668,
-    "gorev_yanlis": 0.6549,
-    "onceki_maliyetli": 0.1641,
-    "onceki_karar_suresi_sn": -0.6604,
-    "intercept": 0.609
+    "seviye": -0.172,
+    "sahne_no": -0.136,
+    "canli_bekleme_ort_dk": 0.6284,
+    "canli_en_yakin_orani": 0.0013,
+    "canli_bekleyen": 0.4345,
+    "gorev_yanlis": 0.6359,
+    "onceki_maliyetli": 0.3508,
+    "onceki_karar_suresi_sn": -0.6281,
+    "intercept": 0.5349
   },
   "metrics": {
-    "roc_auc": 0.7817,
-    "accuracy": 0.7322,
-    "f1": 0.7763,
-    "brier": 0.1856,
-    "roc_auc_real_only": null,
-    "n_test_real": 3,
-    "n_rows": 609,
-    "n_rows_real": 9,
-    "n_sessions_real": 3,
-    "positive_rate": 0.5862,
-    "onnx_max_abs_diff": 1.01e-07
+    "roc_auc": 0.7876,
+    "accuracy": 0.738,
+    "f1": 0.7841,
+    "brier": 0.1826,
+    "roc_auc_real_only": 0.2,
+    "n_test_real": 7,
+    "n_rows": 621,
+    "n_rows_real": 21,
+    "n_sessions_real": 7,
+    "positive_rate": 0.5845,
+    "onnx_max_abs_diff": 8.44e-08
   },
   "seed": 13,
   "sklearn_version": "1.9.1",

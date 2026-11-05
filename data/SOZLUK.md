@@ -25,7 +25,7 @@ One row = one crisis decision. A full session has 3 rows (Crisis 1, 2, 3) that s
 
 ## Where the rows come from
 
-**Real (`gercek`).** Players opened the published game, played normally and, on the end screen, pressed "Copy all sessions on this device" and sent the rows to the author. Nothing is sent to a server. The rows are kept in `data/gercek.csv` exactly as received.
+**Real (`gercek`).** Players opened the published game, played normally and, on the end screen, pressed "Copy all sessions on this device" and sent the rows to the author. Nothing is sent to a server. The rows are kept in `data/gercek.csv` exactly as received. Before training, `generate_synthetic.py` checks every real session against the game's rules: three crises in order, `maliyetli_secim` must follow from `secim`, and `onceki_maliyetli` / `onceki_karar_suresi_sn` must match the session's earlier rows. A session that fails is dropped and reported, because the game cannot produce it.
 
 **Synthetic (`sentetik`).** `python data/generate_synthetic.py` (seed 13, 200 sessions) simulates players with a hidden skill `s ~ N(0, 1)`. Skill sets the level they pick (20 % pick a random level), their live-phase play and their thinking time (median wait about 3 simulated minutes, median thinking time about 6 s, matching the first real sessions). The label is drawn from (rule `synthetic-2`):
 

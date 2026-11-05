@@ -77,6 +77,29 @@ def session(rng):
     return rows
 
 
+def check_real(rows):
+    """Keep only sessions the game could have produced: the label must follow from the choice,
+    and the running counters must match the session's earlier rows. Others are reported and dropped."""
+    by = {}
+    for r in rows:
+        by.setdefault(r["oturum"], []).append(r)
+    keep = []
+    for sid, rs in by.items():
+        rs.sort(key=lambda r: int(r["sahne_no"]))
+        costly, prev, ok = 0, 0.0, [int(r["sahne_no"]) for r in rs] == [1, 2, 3]
+        for r in rs:
+            no = int(r["sahne_no"])
+            ok &= (r["secim"] == COSTLY[no]) == (r["maliyetli_secim"] == "1")
+            ok &= int(r["onceki_maliyetli"]) == costly and abs(float(r["onceki_karar_suresi_sn"]) - prev) < 1e-6
+            costly += int(r["maliyetli_secim"])
+            prev = float(r["karar_suresi_sn"])
+        if ok:
+            keep += rs
+        else:
+            print(f"dropped real session {sid}: rows are not consistent with the game's rules")
+    return keep
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sessions", type=int, default=200)
@@ -95,6 +118,7 @@ def main():
                 if r.get("kaynak") == "gercek" and key not in seen:
                     seen.add(key)
                     real.append({c: r.get(c, "") for c in COLS})
+    real = check_real(real)
     synth = [r for _ in range(a.sessions) for r in session(rng)]
     rows = real + synth
     with open(a.out, "w", newline="") as f:

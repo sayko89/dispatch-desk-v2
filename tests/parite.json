@@ -25,7 +25,7 @@
         "onceki_maliyetli": 2,
         "onceki_karar_suresi_sn": 4
       },
-      "p": 0.99106622,
+      "p": 0.98789668,
       "support": true
     },
     {
@@ -40,7 +40,7 @@
         "onceki_maliyetli": 0,
         "onceki_karar_suresi_sn": 25
       },
-      "p": 0.01093504,
+      "p": 0.01264918,
       "support": false
     },
     {
@@ -55,7 +55,7 @@
         "onceki_maliyetli": 0,
         "onceki_karar_suresi_sn": 0
       },
-      "p": 0.6092875,
+      "p": 0.60543782,
       "support": true
     },
     {
@@ -70,7 +70,7 @@
         "onceki_maliyetli": 1,
         "onceki_karar_suresi_sn": 40
       },
-      "p": 0.00639895,
+      "p": 0.01115054,
       "support": false
     },
     {
@@ -85,7 +85,7 @@
         "onceki_maliyetli": 1,
         "onceki_karar_suresi_sn": 3.5
       },
-      "p": 0.79233068,
+      "p": 0.80818027,
       "support": true
     }
   ]
