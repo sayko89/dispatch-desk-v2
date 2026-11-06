@@ -22,7 +22,7 @@ When a crisis opens, the model estimates **p = P(this player will pick the costl
 |---|---|
 | **Play it (GitHub Pages)** | https://sayko89.github.io/dispatch-desk-v2/ · model on: [`?rollout=on`](https://sayko89.github.io/dispatch-desk-v2/?rollout=on) |
 | **Model (Hugging Face)** | https://huggingface.co/saiyko/dispatch-desk-risk · pinned: `https://huggingface.co/saiyko/dispatch-desk-risk/resolve/5f8e8b7afd56208ad4263572c0294427ca65b05d/model.onnx` |
-| **Server consumer (bonus)** | Render: `RENDER_URL` · source in [`server/`](server/) |
+| **Server consumer (bonus)** | https://dispatch-desk-v2-api.onrender.com ([`/health`](https://dispatch-desk-v2-api.onrender.com/health), `POST /predict`) · source in [`server/`](server/) |
 | **Demo video** | `DEMO_URL` (two players, same scene, different model decisions) |
 | v1 game, design and tutor eval | [`V1.md`](V1.md) · [Stitch](https://stitch.withgoogle.com/projects/9828801172742432808) · [AI Studio](https://ai.studio/apps/c92c0966-9d92-45c2-bc3c-554fd44dcc52) |
 
@@ -105,7 +105,7 @@ npm run test:regression   # the same v1 tests with --env rollout=on
 npm run test:model        # parity (5 inputs, |Δ| < 1e-4) + AE-6, AE-7, AE-8
 npm run demo:v2           # demo video: two players, same scene, different decisions
 python tests/parite.py --check                    # oracle: onnxruntime vs scikit-learn vs parite.json
-python tests/parite.py --server https://…onrender.com   # bonus: FastAPI gives the same p
+python tests/parite.py --server https://dispatch-desk-v2-api.onrender.com   # bonus: FastAPI gives the same p
 ```
 
 The browser parity and the regression suite were also replayed with Playwright, using the same selectors and a local onnxruntime-web 1.22.0. The worst browser difference was below 2e-7, and P1–P8 and AE-1…5 passed with the model on. The CI workflow [`.github/workflows/model.yml`](.github/workflows/model.yml) reruns `train.py` and the oracle on every data or model change.
