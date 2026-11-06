@@ -236,8 +236,8 @@ The browser parity and the regression suite were also replayed with Playwright, 
 
 ## AI use
 
-- **Claude (Anthropic, Claude Code):** wrote the first drafts of the telemetry code in `index.html`, `train.py`, `tests/parite.py`, the synthetic generator, the FastAPI server, the Cypress specs and these documents. It also ran the Playwright replays.
-- **Decided by hand:** the model target (costly-decision risk), the 0.70 threshold before training, the browser-first deployment and the real data collection. The real sessions were played by people and copied in by hand.
-- **Fixed by hand after review:** *(write here what you changed yourself, e.g. a feature definition, wording in the support card, the synthetic rule's weights)*.
-- **Done outside AI tools:** the Hugging Face upload and commit pin, the Render deploy, the demo video recording and the final check of every number in this README against `model/config.json`.
-- **v1 tools still in the game:** Google Stitch (screen design) and Gemini in AI Studio (tutor). See [`V1.md`](V1.md).
+- **Claude (Anthropic, via Claude Code)** wrote the code and the first drafts of the documents from my requirements: the telemetry and model integration in `index.html`, `train.py`, the synthetic generator, `tests/parite.py`, the FastAPI server, the Cypress specs, `README.md`, `RELEASE.md` and `SINAV_TASARIMI.md`. It also replayed the tests with Playwright. Every commit made with it carries a `Co-Authored-By` line.
+- **My decisions:** what the model predicts (costly-decision risk, chosen over other targets), collecting real data instead of using synthetic data only, the browser as the main runtime with a FastAPI server as the bonus, GitHub Pages as the host, and the README's new look and flow diagram.
+- **Done by me outside the AI tool:** I played sessions with friends and collected the **16 real sessions**. I enabled GitHub Pages, created the Hugging Face repo, uploaded the model and pinned its commit, deployed the API on Render, and recorded and published the demo video.
+- **Fixed after review:** After the real rows were added, the first model **failed the gate** (ROC AUC 0.667). We kept the 0.70 threshold and fixed the synthetic rule instead (see the spec's decision log). A batch of rows that did not match the game's rules was rejected, and a rule check was added to the data pipeline. The support card repeated the hint, so it was reworded.
+- **v1 tools still in the game:** Google Stitch (screen design) and Gemini in AI Studio (the tutor). See [`V1.md`](V1.md).
