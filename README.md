@@ -23,7 +23,7 @@ When a crisis opens, the model estimates **p = P(this player will pick the costl
 | **Play it (GitHub Pages)** | https://sayko89.github.io/dispatch-desk-v2/ · model on: [`?rollout=on`](https://sayko89.github.io/dispatch-desk-v2/?rollout=on) |
 | **Model (Hugging Face)** | https://huggingface.co/saiyko/dispatch-desk-risk · pinned: `https://huggingface.co/saiyko/dispatch-desk-risk/resolve/5f8e8b7afd56208ad4263572c0294427ca65b05d/model.onnx` |
 | **Server consumer (bonus)** | https://dispatch-desk-v2-api.onrender.com ([`/health`](https://dispatch-desk-v2-api.onrender.com/health), `POST /predict`) · source in [`server/`](server/) |
-| **Demo video** | `DEMO_URL` (two players, same scene, different model decisions) |
+| **Demo video** | https://youtube.com/shorts/un7lmACvZM4 (two players, same scene, different model decisions) |
 | v1 game, design and tutor eval | [`V1.md`](V1.md) · [Stitch](https://stitch.withgoogle.com/projects/9828801172742432808) · [AI Studio](https://ai.studio/apps/c92c0966-9d92-45c2-bc3c-554fd44dcc52) |
 
 ## Setup (3 commands)
