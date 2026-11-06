@@ -1,30 +1,56 @@
 <p align="center">
-  <img src=".github/assets/banner.svg" alt="Dispatch Desk: a mobile story game about software engineering decisions under pressure" width="100%">
+  <img src=".github/assets/banner-v2.svg" alt="Dispatch Desk v2: an on-device model reads how you play and offers support when the risk of a costly choice is high" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://sayko89.github.io/dispatch-desk-v2/"><img src="https://img.shields.io/badge/PLAY-GitHub%20Pages-FF2D55?style=for-the-badge&labelColor=030920" alt="Play on GitHub Pages"></a>
-  <a href="https://huggingface.co/saiyko/dispatch-desk-risk"><img src="https://img.shields.io/badge/MODEL-Hugging%20Face-FFC53D?style=for-the-badge&labelColor=030920" alt="Model on Hugging Face"></a>
-  <a href="tests/"><img src="https://img.shields.io/badge/PARITY-%7C%CE%94%7C%20%3C%201e--4-22F0A3?style=for-the-badge&labelColor=030920" alt="Browser vs Python parity under 1e-4"></a>
-  <a href="RELEASE.md"><img src="https://img.shields.io/badge/RELEASE-shadow%20%E2%86%92%20canary%20%E2%86%92%20100%25-25E2FF?style=for-the-badge&labelColor=030920" alt="Release plan"></a>
+  <a href="https://sayko89.github.io/dispatch-desk-v2/"><img src="https://img.shields.io/badge/PLAY-v2%20on%20GitHub%20Pages-AE8FFF?style=flat-square&labelColor=140B33" alt="Play v2 on GitHub Pages"></a>
+  <a href="https://huggingface.co/saiyko/dispatch-desk-risk"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20MODEL-saiyko%2Fdispatch--desk--risk-FFC53D?style=flat-square&labelColor=140B33" alt="Model on Hugging Face"></a>
+  <a href="https://dispatch-desk-v2-api.onrender.com/health"><img src="https://img.shields.io/badge/API-FastAPI%20on%20Render-25E2FF?style=flat-square&labelColor=140B33" alt="FastAPI on Render"></a>
+  <a href="https://youtube.com/shorts/un7lmACvZM4"><img src="https://img.shields.io/badge/DEMO-YouTube-FF2D55?style=flat-square&labelColor=140B33" alt="Demo video"></a>
 </p>
 
-# SE Primer: Dispatch Desk v2 · an on-device model
+# Dispatch Desk v2 · the game reads how you play
 
-**v2 adds a small machine-learning model to the [Dispatch Desk](V1.md) story game. The model runs in the player's browser and changes how the game treats each player.**
-YZM301 · *The Primer v2* assignment · Samsun University, Software Engineering
+> **v1** taught three engineering decisions with a story and a Socratic tutor ([`V1.md`](V1.md)).
+> **v2** adds a small model that runs **in the player's browser**. When a crisis opens, it estimates how likely this player is to pick the costly option, and it steps in only when that risk is high.
 
-When a crisis opens, the model estimates **p = P(this player will pick the costly option)** from how they have played so far: how long calls waited, whether they sent the closest crew, how many field tasks they got wrong, earlier choices and thinking time. If p ≥ 0.50, the game slows the player down with a support card from Derya and, after the decision, the expanded explanation. It never says which option is better. The numbers, the endings and every v1 test stay the same.
+YZM301 · *The Primer v2* · Samsun University, Software Engineering
+
+<table>
+  <tr>
+    <th width="50%">Steady player · Crisis 2 · <code>p = 0.22</code></th>
+    <th width="50%">Struggling player · same scene · <code>p = 0.96</code></th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/v2-crisis2-steady.png" alt="Crisis 2 for a steady player: risk 22 percent, no support card" width="100%"></td>
+    <td><img src="screenshots/v2-crisis2-struggling.png" alt="Crisis 2 for a struggling player: risk 96 percent and Derya's support card" width="100%"></td>
+  </tr>
+  <tr>
+    <td>Below τ = 0.50: the scene is exactly v1.</td>
+    <td>Above τ: Derya's support card, then the expanded explanation on the outcome screen. It never says which option is better.</td>
+  </tr>
+</table>
+
+## At a glance
+
+| | |
+|---|---|
+| 🎯 **Predicts** | `P(costly choice)` at the start of each crisis, from 8 behaviour features |
+| 🧮 **Model** | `StandardScaler → LogisticRegression`, seed 13 → ONNX, **593 bytes** |
+| ✅ **Gate** | ROC AUC **0.761** ≥ 0.70 (threshold committed before training) |
+| 👥 **Data** | **16 real sessions** (48 rows) + 600 seeded synthetic rows, no personal data |
+| 🔁 **Parity** | browser vs Python **3e-8**, FastAPI vs Python **0** in a local run (limit 1e-4) |
+| 🚦 **Release** | off → shadow → canary 5 % → 25/50/100 %, one-line rollback |
 
 ## Links
 
 | | |
 |---|---|
-| **Play it (GitHub Pages)** | https://sayko89.github.io/dispatch-desk-v2/ · model on: [`?rollout=on`](https://sayko89.github.io/dispatch-desk-v2/?rollout=on) |
-| **Model (Hugging Face)** | https://huggingface.co/saiyko/dispatch-desk-risk · pinned: `https://huggingface.co/saiyko/dispatch-desk-risk/resolve/5f8e8b7afd56208ad4263572c0294427ca65b05d/model.onnx` |
-| **Server consumer (bonus)** | https://dispatch-desk-v2-api.onrender.com ([`/health`](https://dispatch-desk-v2-api.onrender.com/health), `POST /predict`) · source in [`server/`](server/) |
-| **Demo video** | https://youtube.com/shorts/un7lmACvZM4 (two players, same scene, different model decisions) |
-| v1 game, design and tutor eval | [`V1.md`](V1.md) · [Stitch](https://stitch.withgoogle.com/projects/9828801172742432808) · [AI Studio](https://ai.studio/apps/c92c0966-9d92-45c2-bc3c-554fd44dcc52) |
+| **Play** | https://sayko89.github.io/dispatch-desk-v2/ (model on by default; `?rollout=off` gives v1) |
+| **Model** | https://huggingface.co/saiyko/dispatch-desk-risk · pinned: `…/resolve/5f8e8b7afd56208ad4263572c0294427ca65b05d/model.onnx` |
+| **Server (bonus)** | https://dispatch-desk-v2-api.onrender.com · [`/health`](https://dispatch-desk-v2-api.onrender.com/health) · `POST /predict` · source [`server/`](server/) |
+| **Demo** | https://youtube.com/shorts/un7lmACvZM4 (two players, same scene, different model decisions) |
+| **v1** | [`V1.md`](V1.md) · [Stitch design](https://stitch.withgoogle.com/projects/9828801172742432808) · [AI Studio](https://ai.studio/apps/c92c0966-9d92-45c2-bc3c-554fd44dcc52) |
 
 ## Setup (3 commands)
 
@@ -34,26 +60,90 @@ python train.py                   # trains with seed 13, checks the gate, writes
 npm install                       # Cypress
 ```
 
-Then `npm run test:all` runs the v1 tests, the same tests with the model on, the parity test and AE-6…8. To play locally, serve the folder (`python -m http.server`) and open `http://localhost:8000/?rollout=on`. The model is loaded with `fetch`, so opening the file directly gives "Model offline · v1 rules".
+Then `npm run test:all` runs everything (below). To play locally, serve the folder with `python -m http.server` and open `http://localhost:8000/`. The model is loaded with `fetch`, so opening the file directly shows "Model offline · v1 rules".
 
 ## How v2 fits together
 
+```mermaid
+flowchart TD
+    subgraph D["① Data"]
+        direction LR
+        P["🎮 Real play<br/>rollout = off"] --> R["End screen<br/>Research data"]
+        R -->|copy rows| G[("data/gercek.csv")]
+        S["generate_synthetic.py<br/>seed 13"] --> O
+        G -->|rule check +<br/>de-duplicate| O[("data/oturumlar.csv<br/>kaynak: gercek / sentetik")]
+    end
+
+    SPEC["📄 spec.md §11<br/>ROC AUC ≥ 0.70<br/>committed before training"] -.->|threshold| T
+
+    subgraph M["② Train and gate"]
+        O --> T{{"python train.py"}}
+        T -->|"AUC < 0.70 or |Δ| > 1e-4"| X["❌ exit 1<br/>no model files"]
+        T -->|gate passes| A["model/<br/>model.onnx · config.json · README.md"]
+    end
+
+    subgraph H["③ Publish"]
+        A -->|upload| HF["🤗 Hugging Face<br/>saiyko/dispatch-desk-risk"]
+        HF -->|"pin commit 5f8e8b7"| U["resolve/&lt;commit&gt;/model.onnx"]
+    end
+
+    subgraph C["④ Consumers"]
+        U --> B["🌐 Browser<br/>onnxruntime-web"]
+        A -.->|fallback copy| B
+        A --> F["⚙️ FastAPI on Render<br/>bonus"]
+        B --> GAME["p ≥ 0.50 →<br/>support card"]
+    end
+
+    subgraph V["⑤ Verify"]
+        A --> OR["tests/parite.py<br/>Python oracle"]
+        OR --> J[("tests/parite.json<br/>5 inputs")]
+        J --> CY["Cypress parity<br/>data-cy = p"]
+        J --> SV["parite.py --server"]
+    end
+    B -.-> CY
+    F -.-> SV
+
+    classDef data fill:#1C1546,stroke:#AE8FFF,color:#EDEBFF
+    classDef gate fill:#2A1F0A,stroke:#FFC53D,color:#FFE7A8
+    classDef bad fill:#3A0B18,stroke:#FF2D55,color:#FFD0DA
+    classDef ok fill:#0B2A22,stroke:#22F0A3,color:#C9FFE9
+    classDef pub fill:#0A2233,stroke:#25E2FF,color:#C8F6FF
+    class P,R,G,S,O data
+    class SPEC,T gate
+    class X bad
+    class A,GAME,OR,J,CY,SV ok
+    class HF,U,B,F pub
+    style D fill:#0E0A28,stroke:#3A2F7A,color:#C9C3F2
+    style M fill:#0E0A28,stroke:#3A2F7A,color:#C9C3F2
+    style H fill:#0E0A28,stroke:#3A2F7A,color:#C9C3F2
+    style C fill:#0E0A28,stroke:#3A2F7A,color:#C9C3F2
+    style V fill:#0E0A28,stroke:#3A2F7A,color:#C9C3F2
 ```
-real play (rollout off) ──► end screen "Research data" ──► data/gercek.csv ─┐
-data/generate_synthetic.py (seed 13) ───────────────────────────────────────┴► data/oturumlar.csv
-                                                                                   │
-                     spec.md §11: ROC AUC ≥ 0.70, committed before training        ▼
-                                                                              python train.py
-                                                         gate fails → exit 1, no files │ gate passes
-                                                                                       ▼
-                                          model/model.onnx + config.json + README.md (model card)
-                                                       │ upload, pin commit                │
-                                                       ▼                                   ▼
-                     https://huggingface.co/saiyko/dispatch-desk-risk/resolve/<commit>/   tests/parite.py (oracle)
-                                 │                       │                                 │ parite.json
-                                 ▼                       ▼                                 ▼
-                   browser: onnxruntime-web    server/ FastAPI (bonus)          Cypress parity |Δ| < 1e-4
+
+### What happens when a crisis opens
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant G as Game (index.html)
+    participant ORT as onnxruntime-web
+    participant UI as Crisis scene
+    G->>G: freeze the live phase's stats at the alarm
+    G->>G: build 8 features (level, waits, closest crew, wrong tasks, …)
+    G->>ORT: run model.onnx on float32 [1, 8]
+    ORT-->>G: p = probabilities[1]
+    alt rollout active and p ≥ 0.50
+        G->>UI: support card + risk chip
+        UI-->>G: choice → expanded explanation on the outcome screen
+    else p < 0.50 or shadow
+        G->>UI: v1 scene + risk chip
+    else model failed to load
+        G->>UI: "Model offline · v1 rules"
+    end
+    G->>G: log one anonymous row (features, choice, p, support)
 ```
+
+### Where each deliverable lives
 
 | Deliverable | File |
 |---|---|

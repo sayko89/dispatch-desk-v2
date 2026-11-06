@@ -1347,7 +1347,7 @@ ${ev}
     const hintHTML = S.seviye === "yeni" || (S.seviye === "orta" && S.hintOpen)
       ? `<div class="hint" data-testid="ipucu-kart"><div class="eyebrow">Hint</div>${esc(dec.ipucu)}</div>`
       : S.seviye === "orta" ? `<button class="linkbtn" type="button" data-act="hint" data-testid="ipucu-ac">Show hint</button>` : "";
-    const supportHTML = S.support ? `<div class="support" data-testid="destek-kart"><div class="who">Derya · dispatch supervisor</div><div>Slow down for ten seconds before you pick. ${esc(dec.ipucu)}</div><div class="who">Question to ask yourself</div><div>${esc(dec.destekSoru)}</div></div>` : "";
+    const supportHTML = S.support ? `<div class="support" data-testid="destek-kart"><div class="who">Derya · dispatch supervisor</div><div>It has been a rough shift so far. Slow down for ten seconds before you pick: read both options again${hintHTML.includes("ipucu-kart") ? " and the hint below" : ""}.${hintHTML.includes("ipucu-kart") ? "" : " " + esc(dec.ipucu)}</div><div class="who">Question to ask yourself</div><div>${esc(dec.destekSoru)}</div></div>` : "";
     const chipHTML = ROLLOUT === "off" ? "" : S.p == null ? `<span class="mchip" data-testid="model-p">${S.modelNote === "offline" ? "Model offline · v1 rules" : "Model · scoring…"}</span>` : `<span class="mchip ${S.p >= threshold() ? "hi" : ""}" data-testid="model-p" data-p="${S.p.toFixed(6)}">Risk ${Math.round(S.p * 100)}%${ROLLOUT === "shadow" || !S.active ? " · shadow" : ""}</span>`;
     const timerHTML = S.seviye === "deneyimli" ? `<div class="timer" data-testid="sayac"><div class="bar"><i id="tbar" style="width:${(S.left / 60) * 100}%"></i></div><span class="sec" id="tsec">${Math.ceil(S.left)}</span></div>` : "";
     panel.innerHTML = `
