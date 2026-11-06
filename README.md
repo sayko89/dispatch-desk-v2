@@ -110,6 +110,12 @@ python tests/parite.py --server https://…onrender.com   # bonus: FastAPI gives
 
 The browser parity and the regression suite were also replayed with Playwright, using the same selectors and a local onnxruntime-web 1.22.0. The worst browser difference was below 2e-7, and P1–P8 and AE-1…5 passed with the model on. The CI workflow [`.github/workflows/model.yml`](.github/workflows/model.yml) reruns `train.py` and the oracle on every data or model change.
 
+## Known limitations
+
+- **The model does not yet predict real players.** On the 16 real rows in the test split, ROC AUC is about 0.22 (`roc_auc_real_only` in `model/config.json`). The gate is met on the whole test split, which is mostly synthetic. Real players decided in 2–7 s and often picked differently from the synthetic rule, so the rule's assumptions (slow, careful players avoid the costly option) are not confirmed by real play. With 16 sessions this is a warning sign, not a measurement. The next step is more real sessions with model_p logged (the rollout now records it) and replacing the synthetic rule with what real play shows.
+- Real players were the author and friends, mostly at the Experienced level.
+- The support card can only help; it never changes minutes or endings, so a wrong prediction costs the player at most a few seconds of reading.
+
 ## Repository layout
 
 ```

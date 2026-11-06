@@ -401,7 +401,7 @@ legend small { font-family: var(--f-body); font-weight: 400; font-size: 13px; co
   // Release stage: "off" (v1 rules only), "shadow" (model runs and is logged, no effect),
   // "canary" (model active for CANARY_PERCENT of sessions), "on" (active for everyone).
   // ?rollout=… in the URL overrides it for testing and demos.
-  const ROLLOUT_DEFAULT = "off";
+  const ROLLOUT_DEFAULT = "on"; // v2.0 release. Data collection ran with "off" (see RELEASE.md).
   const CANARY_PERCENT = 5;
   const ROLLOUT = ["off", "shadow", "canary", "on"].includes(QS.get("rollout")) ? QS.get("rollout") : ROLLOUT_DEFAULT;
   const ORT_CDN = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.22.0/dist/";

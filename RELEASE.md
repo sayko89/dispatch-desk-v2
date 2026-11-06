@@ -36,7 +36,7 @@ The stage lives in one constant, `ROLLOUT` in `index.html`. The URL parameter `?
 | 3 · Progressive | `CANARY_PERCENT` 25 → 50 → 100 | larger share each step | Same checks at each step, at least a day apart |
 | 4 · On | `on` | everyone | – |
 
-At this course's scale (a few dozen sessions), the canary checks are qualitative. The point is the mechanism: the same code path runs at every stage, and moving between stages is a one-line change.
+**Where this release is.** Stage 0 ran with real players (16 sessions, `rollout = off`). The course has no user base to canary on, so v2.0 ships at stage 4 (`ROLLOUT_DEFAULT = "on"`). Stages 1–3 are implemented and can be opened with `?rollout=shadow` or `?rollout=canary`. At this course's scale (a few dozen sessions), the canary checks are qualitative. The point is the mechanism: the same code path runs at every stage, and moving between stages is a one-line change.
 
 ## Rollback plan
 

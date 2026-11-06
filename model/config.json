@@ -25,12 +25,12 @@
     {
       "name": "canli_bekleme_ort_dk",
       "label": "Average call wait in the previous live phase (sim. minutes)",
-      "example": 3.12
+      "example": 3.11
     },
     {
       "name": "canli_en_yakin_orani",
       "label": "Share of assignments to the closest crew (0-1)",
-      "example": 0.59
+      "example": 0.6
     },
     {
       "name": "canli_bekleyen",
@@ -50,7 +50,7 @@
     {
       "name": "onceki_karar_suresi_sn",
       "label": "Seconds spent on the previous crisis (0 for Crisis 1)",
-      "example": 3.6
+      "example": 3.5
     }
   ],
   "decision_threshold": 0.5,
@@ -61,28 +61,28 @@
     "parity_tol": 0.0001
   },
   "coefficients": {
-    "seviye": -0.2803,
-    "sahne_no": -0.2736,
-    "canli_bekleme_ort_dk": 0.6076,
-    "canli_en_yakin_orani": -0.0234,
-    "canli_bekleyen": 0.3613,
-    "gorev_yanlis": 0.6092,
-    "onceki_maliyetli": 0.3911,
-    "onceki_karar_suresi_sn": -0.4445,
-    "intercept": 0.5134
+    "seviye": -0.1458,
+    "sahne_no": -0.1381,
+    "canli_bekleme_ort_dk": 0.7545,
+    "canli_en_yakin_orani": 0.1981,
+    "canli_bekleyen": 0.2938,
+    "gorev_yanlis": 0.563,
+    "onceki_maliyetli": 0.4521,
+    "onceki_karar_suresi_sn": -0.7103,
+    "intercept": 0.4913
   },
   "metrics": {
-    "roc_auc": 0.7893,
-    "accuracy": 0.7368,
-    "f1": 0.7685,
-    "brier": 0.1842,
-    "roc_auc_real_only": 0.1905,
-    "n_test_real": 10,
-    "n_rows": 633,
-    "n_rows_real": 33,
-    "n_sessions_real": 11,
-    "positive_rate": 0.5814,
-    "onnx_max_abs_diff": 8.22e-08
+    "roc_auc": 0.761,
+    "accuracy": 0.7179,
+    "f1": 0.7737,
+    "brier": 0.1926,
+    "roc_auc_real_only": 0.2188,
+    "n_test_real": 16,
+    "n_rows": 648,
+    "n_rows_real": 48,
+    "n_sessions_real": 16,
+    "positive_rate": 0.5802,
+    "onnx_max_abs_diff": 8.49e-08
   },
   "seed": 13,
   "sklearn_version": "1.9.1",
