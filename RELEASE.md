@@ -17,8 +17,8 @@
 | | |
 |---|---|
 | Hugging Face repo | `saiyko/dispatch-desk-risk` |
-| Pinned commit | `HF_COMMIT` (filled in after upload) |
-| URL used by the app | `https://huggingface.co/saiyko/dispatch-desk-risk/resolve/HF_COMMIT/model.onnx` |
+| Pinned commit | `5f8e8b7afd56208ad4263572c0294427ca65b05d` |
+| URL used by the app | `https://huggingface.co/saiyko/dispatch-desk-risk/resolve/5f8e8b7afd56208ad4263572c0294427ca65b05d/model.onnx` |
 | Fallback | the copy in this repo's `model/` folder, served by GitHub Pages |
 | Gate result | see `model/config.json` → `metrics` (ROC AUC ≥ 0.70 required, spec 11.4) |
 
@@ -67,7 +67,7 @@ Rollback triggers: the model fails to load for many players, the support card sh
 - [x] Browser parity (`cypress/e2e/parite.cy.js`): |Δ| < 1e-4 on 5 inputs
 - [x] Regression: P1–P8 and AE-1 … AE-5 with `--env rollout=on`
 - [x] AE-6, AE-7, AE-8 (`cypress/e2e/model.cy.js`)
-- [ ] Model uploaded to Hugging Face, commit pinned in `index.html` and above
+- [x] Model uploaded to Hugging Face, commit pinned in `index.html` and above
 - [ ] FastAPI deployed on Render, `parite.py --server` passes
 
 ## References
