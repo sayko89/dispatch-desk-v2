@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 640" width="1240" height="640" role="img" aria-labelledby="t d">
+<title id="t">How Dispatch Desk v2 fits together</title>
+<desc id="d">Five stages from left to right. Data: real play and seeded synthetic rows are merged into data/oturumlar.csv. Train and gate: train.py checks ROC AUC against the 0.70 threshold committed in spec.md; failing writes no files. Publish: the model is uploaded to Hugging Face and pinned to a commit, with a fallback copy on GitHub Pages. Consumers: the browser runs it with onnxruntime-web and shows a support card when p is at least 0.50; a FastAPI server is the bonus consumer. Verify: a Python oracle writes five reference inputs that the Cypress parity test and the server check compare against.</desc>
+<defs>
+  <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8C86B8"/></marker>
+  <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#22F0A3"/></marker>
+  <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#FF2D55"/></marker>
+  <style>
+    .f{font-family:Inter,"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif}
+    .m{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    .col{fill:#0E0A28;stroke:#2E2566}
+    .h{font-size:12px;letter-spacing:2px;fill:#AE8FFF}
+    .bx{fill:#1C1546;stroke:#5A4BA8}
+    .t{font-size:14px;fill:#EDEBFF}
+    .s{font-size:12px;fill:#A9A3D6}
+    .ln{stroke:#8C86B8;stroke-width:1.6;fill:none}
+    .dash{stroke-dasharray:5 5}
+    .gl{font-size:11px;fill:#C9C3F2}
+  </style>
+</defs>
+<rect width="1240" height="640" fill="#07061A"/>
+
+<!-- columns -->
+<g>
+  <rect class="col" x="16" y="16" width="224" height="608" rx="14"/>
+  <rect class="col" x="260" y="16" width="224" height="608" rx="14"/>
+  <rect class="col" x="504" y="16" width="224" height="608" rx="14"/>
+  <rect class="col" x="748" y="16" width="224" height="608" rx="14"/>
+  <rect class="col" x="992" y="16" width="232" height="608" rx="14"/>
+  <text class="m h" x="32" y="44">1 · DATA</text>
+  <text class="m h" x="276" y="44">2 · TRAIN AND GATE</text>
+  <text class="m h" x="520" y="44">3 · PUBLISH</text>
+  <text class="m h" x="764" y="44">4 · CONSUMERS</text>
+  <text class="m h" x="1008" y="44">5 · VERIFY</text>
+</g>
+
+<!-- 1 DATA -->
+<g class="f">
+  <rect class="bx" x="32" y="64" width="192" height="58" rx="10"/>
+  <text class="t" x="128" y="89" text-anchor="middle">Real play</text>
+  <text class="m s" x="128" y="109" text-anchor="middle">rollout = off</text>
+
+  <rect class="bx" x="32" y="150" width="192" height="58" rx="10"/>
+  <text class="t" x="128" y="175" text-anchor="middle">End screen</text>
+  <text class="s" x="128" y="195" text-anchor="middle">player copies anonymous rows</text>
+
+  <rect class="bx" x="32" y="236" width="192" height="58" rx="10"/>
+  <text class="m t" x="128" y="261" text-anchor="middle">data/gercek.csv</text>
+  <text class="s" x="128" y="281" text-anchor="middle">16 real sessions</text>
+
+  <rect class="bx" x="32" y="336" width="192" height="58" rx="10"/>
+  <text class="m t" x="128" y="361" text-anchor="middle">generate_synthetic.py</text>
+  <text class="s" x="128" y="381" text-anchor="middle">rule synthetic-2 · seed 13</text>
+
+  <rect x="32" y="436" width="192" height="76" rx="10" fill="#241B55" stroke="#AE8FFF" stroke-width="1.5"/>
+  <text class="m t" x="128" y="462" text-anchor="middle">data/oturumlar.csv</text>
+  <text class="s" x="128" y="482" text-anchor="middle">rule check · de-duplicate</text>
+  <text class="m s" x="128" y="500" text-anchor="middle">kaynak: gercek | sentetik</text>
+
+  <path class="ln" d="M128,122 V146" marker-end="url(#a)"/>
+  <path class="ln" d="M128,208 V232" marker-end="url(#a)"/>
+  <path class="ln" d="M128,294 V314 H24 V474 H28" marker-end="url(#a)"/>
+  <path class="ln" d="M128,394 V432" marker-end="url(#a)"/>
+</g>
+
+<!-- 2 TRAIN -->
+<g class="f">
+  <rect x="276" y="64" width="192" height="76" rx="10" fill="#2A1F0A" stroke="#FFC53D"/>
+  <text class="m t" x="372" y="90" text-anchor="middle" fill="#FFE7A8">spec.md §11</text>
+  <text class="s" x="372" y="110" text-anchor="middle" fill="#FFE7A8">ROC AUC ≥ 0.70</text>
+  <text class="s" x="372" y="128" text-anchor="middle" fill="#E8C56A">committed before training</text>
+
+  <rect x="276" y="236" width="192" height="58" rx="10" fill="#2A1F0A" stroke="#FFC53D"/>
+  <text class="m t" x="372" y="261" text-anchor="middle" fill="#FFE7A8">python train.py</text>
+  <text class="s" x="372" y="281" text-anchor="middle" fill="#E8C56A">seed 13 · stratified 70/30</text>
+
+  <polygon points="372,326 444,366 372,406 300,366" fill="#1C1546" stroke="#FFC53D"/>
+  <text class="t" x="372" y="362" text-anchor="middle">AUC ≥ 0.70</text>
+  <text class="s" x="372" y="380" text-anchor="middle">and |Δ| ≤ 1e-4 ?</text>
+
+  <rect x="276" y="436" width="192" height="76" rx="10" fill="#0B2A22" stroke="#22F0A3"/>
+  <text class="m t" x="372" y="462" text-anchor="middle" fill="#C9FFE9">model/</text>
+  <text class="m s" x="372" y="482" text-anchor="middle" fill="#9FE9CB">model.onnx · config.json</text>
+  <text class="m s" x="372" y="500" text-anchor="middle" fill="#9FE9CB">README.md (model card)</text>
+
+  <rect x="276" y="548" width="192" height="58" rx="10" fill="#3A0B18" stroke="#FF2D55"/>
+  <text class="t" x="372" y="573" text-anchor="middle" fill="#FFD0DA">exit 1</text>
+  <text class="s" x="372" y="593" text-anchor="middle" fill="#FFB3C3">no model files written</text>
+
+  <path class="ln dash" d="M372,140 V232" marker-end="url(#a)"/>
+  <text class="m gl" x="380" y="190">threshold</text>
+  <path class="ln" d="M372,294 V322" marker-end="url(#a)"/>
+  <path d="M372,406 V432" stroke="#22F0A3" stroke-width="1.8" fill="none" marker-end="url(#ag)"/>
+  <text class="m gl" x="380" y="424" fill="#22F0A3">pass</text>
+  <path d="M444,366 H458 V577 H472" stroke="#FF2D55" stroke-width="1.6" fill="none" stroke-dasharray="5 4" opacity="0"/>
+  <path d="M300,366 H268 V577 H272" stroke="#FF2D55" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <text class="m gl" x="236" y="456" fill="#FF2D55" text-anchor="end" opacity="0">fail</text>
+  <text class="m gl" x="263" y="470" fill="#FF2D55" transform="rotate(-90 263 470)" text-anchor="middle">fail</text>
+  <!-- data -> train -->
+  <path class="ln" d="M224,474 H250 V265 H272" marker-end="url(#a)"/>
+</g>
+
+<!-- 3 PUBLISH -->
+<g class="f">
+  <rect x="520" y="236" width="192" height="58" rx="10" fill="#0A2233" stroke="#25E2FF"/>
+  <text class="t" x="616" y="261" text-anchor="middle" fill="#C8F6FF">Hugging Face</text>
+  <text class="m s" x="616" y="281" text-anchor="middle" fill="#9EDCEB">saiyko/dispatch-desk-risk</text>
+
+  <rect x="520" y="336" width="192" height="58" rx="10" fill="#0A2233" stroke="#25E2FF"/>
+  <text class="t" x="616" y="361" text-anchor="middle" fill="#C8F6FF">Pinned commit</text>
+  <text class="m s" x="616" y="381" text-anchor="middle" fill="#9EDCEB">commit 5f8e8b7…</text>
+
+  <rect x="520" y="436" width="192" height="76" rx="10" fill="#0A2233" stroke="#25E2FF" stroke-dasharray="5 4"/>
+  <text class="t" x="616" y="462" text-anchor="middle" fill="#C8F6FF">Fallback copy</text>
+  <text class="s" x="616" y="482" text-anchor="middle" fill="#9EDCEB">model/ on GitHub Pages</text>
+  <text class="s" x="616" y="500" text-anchor="middle" fill="#9EDCEB">used if the pin fails</text>
+
+  <path class="ln" d="M468,474 H494 V265 H516" marker-end="url(#a)"/>
+  <text class="m gl" x="476" y="228">upload</text>
+  <path class="ln" d="M468,474 H516" marker-end="url(#a)"/>
+  <path class="ln" d="M616,294 V332" marker-end="url(#a)"/>
+</g>
+
+<!-- 4 CONSUMERS -->
+<g class="f">
+  <rect x="764" y="336" width="192" height="58" rx="10" fill="#0A2233" stroke="#25E2FF"/>
+  <text class="t" x="860" y="361" text-anchor="middle" fill="#C8F6FF">Browser</text>
+  <text class="m s" x="860" y="381" text-anchor="middle" fill="#9EDCEB">onnxruntime-web 1.22</text>
+
+  <rect x="764" y="436" width="192" height="76" rx="10" fill="#0B2A22" stroke="#22F0A3"/>
+  <text class="t" x="860" y="462" text-anchor="middle" fill="#C9FFE9">p ≥ 0.50</text>
+  <text class="s" x="860" y="482" text-anchor="middle" fill="#9FE9CB">support card on the scene</text>
+  <text class="s" x="860" y="500" text-anchor="middle" fill="#9FE9CB">else the v1 scene</text>
+
+  <rect x="764" y="548" width="192" height="58" rx="10" fill="#0A2233" stroke="#25E2FF"/>
+  <text class="t" x="860" y="573" text-anchor="middle" fill="#C8F6FF">FastAPI on Render</text>
+  <text class="m s" x="860" y="593" text-anchor="middle" fill="#9EDCEB">POST /predict · bonus</text>
+
+  <path class="ln" d="M712,365 H760" marker-end="url(#a)"/>
+  <path class="ln dash" d="M712,474 H738 V385 H760" marker-end="url(#a)"/>
+  <path class="ln" d="M860,394 V432" marker-end="url(#a)"/>
+  <path class="ln" d="M372,512 V530 H740 V577 H760" marker-end="url(#a)"/>
+</g>
+
+<!-- 5 VERIFY -->
+<g class="f">
+  <rect x="1008" y="64" width="200" height="58" rx="10" fill="#0B2A22" stroke="#22F0A3"/>
+  <text class="m t" x="1108" y="89" text-anchor="middle" fill="#C9FFE9">tests/parite.py</text>
+  <text class="s" x="1108" y="109" text-anchor="middle" fill="#9FE9CB">Python oracle</text>
+
+  <rect x="1008" y="150" width="200" height="58" rx="10" fill="#0B2A22" stroke="#22F0A3"/>
+  <text class="m t" x="1108" y="175" text-anchor="middle" fill="#C9FFE9">tests/parite.json</text>
+  <text class="s" x="1108" y="195" text-anchor="middle" fill="#9FE9CB">5 reference inputs + p</text>
+
+  <rect x="1008" y="336" width="200" height="58" rx="10" fill="#0B2A22" stroke="#22F0A3"/>
+  <text class="t" x="1108" y="361" text-anchor="middle" fill="#C9FFE9">Cypress parity</text>
+  <text class="m s" x="1108" y="381" text-anchor="middle" fill="#9FE9CB">data-cy="p" · |Δ| &lt; 1e-4</text>
+
+  <rect x="1008" y="548" width="200" height="58" rx="10" fill="#0B2A22" stroke="#22F0A3"/>
+  <text class="m t" x="1108" y="573" text-anchor="middle" fill="#C9FFE9">parite.py --server</text>
+  <text class="s" x="1108" y="593" text-anchor="middle" fill="#9FE9CB">|Δ| &lt; 1e-4</text>
+
+  <path class="ln" d="M1108,122 V146" marker-end="url(#a)"/>
+  <path class="ln" d="M1108,208 V332" marker-end="url(#a)"/>
+  <path class="ln" d="M1108,208 V230 H1218 V577 H1212" marker-end="url(#a)"/>
+  <!-- model -> oracle (top bus) -->
+  <path class="ln" d="M494,265 V58 H982 V93 H1004" marker-end="url(#a)"/>
+  <!-- consumers -> checks -->
+  <path class="ln dash" d="M956,365 H1004" marker-end="url(#a)"/>
+  <path class="ln dash" d="M956,577 H1004" marker-end="url(#a)"/>
+</g>
+</svg>

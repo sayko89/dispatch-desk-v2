@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://sayko89.github.io/dispatch-desk-v2/"><img src="https://img.shields.io/badge/PLAY-v2%20on%20GitHub%20Pages-AE8FFF?style=flat-square&labelColor=140B33" alt="Play v2 on GitHub Pages"></a>
-  <a href="https://huggingface.co/saiyko/dispatch-desk-risk"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20MODEL-saiyko%2Fdispatch--desk--risk-FFC53D?style=flat-square&labelColor=140B33" alt="Model on Hugging Face"></a>
+  <a href="https://huggingface.co/saiyko/dispatch-desk-risk"><img src="https://img.shields.io/badge/MODEL-saiyko%2Fdispatch--desk--risk-FFC53D?style=flat-square&labelColor=140B33" alt="Model on Hugging Face"></a>
   <a href="https://dispatch-desk-v2-api.onrender.com/health"><img src="https://img.shields.io/badge/API-FastAPI%20on%20Render-25E2FF?style=flat-square&labelColor=140B33" alt="FastAPI on Render"></a>
   <a href="https://youtube.com/shorts/un7lmACvZM4"><img src="https://img.shields.io/badge/DEMO-YouTube-FF2D55?style=flat-square&labelColor=140B33" alt="Demo video"></a>
 </p>
@@ -35,12 +35,12 @@ YZM301 · *The Primer v2* · Samsun University, Software Engineering
 
 | | |
 |---|---|
-| 🎯 **Predicts** | `P(costly choice)` at the start of each crisis, from 8 behaviour features |
-| 🧮 **Model** | `StandardScaler → LogisticRegression`, seed 13 → ONNX, **593 bytes** |
-| ✅ **Gate** | ROC AUC **0.761** ≥ 0.70 (threshold committed before training) |
-| 👥 **Data** | **16 real sessions** (48 rows) + 600 seeded synthetic rows, no personal data |
-| 🔁 **Parity** | browser vs Python **3e-8**, FastAPI vs Python **0** in a local run (limit 1e-4) |
-| 🚦 **Release** | off → shadow → canary 5 % → 25/50/100 %, one-line rollback |
+| **Predicts** | `P(costly choice)` at the start of each crisis, from 8 behaviour features |
+| **Model** | `StandardScaler → LogisticRegression`, seed 13 → ONNX, **593 bytes** |
+| **Gate** | ROC AUC **0.761** ≥ 0.70 (threshold committed before training) |
+| **Data** | **16 real sessions** (48 rows) + 600 seeded synthetic rows, no personal data |
+| **Parity** | browser vs Python **3e-8**, FastAPI vs Python **0** in a local run (limit 1e-4) |
+| **Release** | off → shadow → canary 5 % → 25/50/100 %, one-line rollback |
 
 ## Links
 
@@ -64,84 +64,17 @@ Then `npm run test:all` runs everything (below). To play locally, serve the fold
 
 ## How v2 fits together
 
-```mermaid
-flowchart TD
-    subgraph D["① Data"]
-        direction LR
-        P["🎮 Real play<br/>rollout = off"] --> R["End screen<br/>Research data"]
-        R -->|copy rows| G[("data/gercek.csv")]
-        S["generate_synthetic.py<br/>seed 13"] --> O
-        G -->|rule check +<br/>de-duplicate| O[("data/oturumlar.csv<br/>kaynak: gercek / sentetik")]
-    end
+<p align="center"><img src=".github/assets/flow-v2.svg" alt="Flow of v2: real and synthetic data are merged, train.py checks the ROC AUC gate, the passing model is published to Hugging Face with a pinned commit, the browser and the FastAPI server consume it, and the Python oracle checks both" width="100%"></p>
 
-    SPEC["📄 spec.md §11<br/>ROC AUC ≥ 0.70<br/>committed before training"] -.->|threshold| T
-
-    subgraph M["② Train and gate"]
-        O --> T{{"python train.py"}}
-        T -->|"AUC < 0.70 or |Δ| > 1e-4"| X["❌ exit 1<br/>no model files"]
-        T -->|gate passes| A["model/<br/>model.onnx · config.json · README.md"]
-    end
-
-    subgraph H["③ Publish"]
-        A -->|upload| HF["🤗 Hugging Face<br/>saiyko/dispatch-desk-risk"]
-        HF -->|"pin commit 5f8e8b7"| U["resolve/&lt;commit&gt;/model.onnx"]
-    end
-
-    subgraph C["④ Consumers"]
-        U --> B["🌐 Browser<br/>onnxruntime-web"]
-        A -.->|fallback copy| B
-        A --> F["⚙️ FastAPI on Render<br/>bonus"]
-        B --> GAME["p ≥ 0.50 →<br/>support card"]
-    end
-
-    subgraph V["⑤ Verify"]
-        A --> OR["tests/parite.py<br/>Python oracle"]
-        OR --> J[("tests/parite.json<br/>5 inputs")]
-        J --> CY["Cypress parity<br/>data-cy = p"]
-        J --> SV["parite.py --server"]
-    end
-    B -.-> CY
-    F -.-> SV
-
-    classDef data fill:#1C1546,stroke:#AE8FFF,color:#EDEBFF
-    classDef gate fill:#2A1F0A,stroke:#FFC53D,color:#FFE7A8
-    classDef bad fill:#3A0B18,stroke:#FF2D55,color:#FFD0DA
-    classDef ok fill:#0B2A22,stroke:#22F0A3,color:#C9FFE9
-    classDef pub fill:#0A2233,stroke:#25E2FF,color:#C8F6FF
-    class P,R,G,S,O data
-    class SPEC,T gate
-    class X bad
-    class A,GAME,OR,J,CY,SV ok
-    class HF,U,B,F pub
-    style D fill:#0E0A28,stroke:#3A2F7A,color:#C9C3F2
-    style M fill:#0E0A28,stroke:#3A2F7A,color:#C9C3F2
-    style H fill:#0E0A28,stroke:#3A2F7A,color:#C9C3F2
-    style C fill:#0E0A28,stroke:#3A2F7A,color:#C9C3F2
-    style V fill:#0E0A28,stroke:#3A2F7A,color:#C9C3F2
-```
+1. **Data.** Real players play with the model off. On the end screen they copy their anonymous rows, which go into `data/gercek.csv`. `generate_synthetic.py` (seed 13) checks every real session against the game's rules, removes duplicates and adds the synthetic rows. The result is `data/oturumlar.csv`.
+2. **Train and gate.** The threshold (ROC AUC ≥ 0.70) was committed in `spec.md` before any training. `train.py` trains with a fixed seed and checks the threshold and the ONNX export. If either check fails, it exits with code 1 and writes nothing.
+3. **Publish.** The three files in `model/` are uploaded to Hugging Face, and the app pins that exact commit. A copy in this repository is the fallback.
+4. **Consumers.** The browser runs the model with onnxruntime-web. When p ≥ 0.50, the support card appears. The FastAPI server on Render runs the same file.
+5. **Verify.** The Python oracle writes five reference inputs and their probabilities. Cypress compares the app's `data-cy="p"` against them, and `parite.py --server` does the same for the API. Both must stay within 1e-4.
 
 ### What happens when a crisis opens
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant G as Game (index.html)
-    participant ORT as onnxruntime-web
-    participant UI as Crisis scene
-    G->>G: freeze the live phase's stats at the alarm
-    G->>G: build 8 features (level, waits, closest crew, wrong tasks, …)
-    G->>ORT: run model.onnx on float32 [1, 8]
-    ORT-->>G: p = probabilities[1]
-    alt rollout active and p ≥ 0.50
-        G->>UI: support card + risk chip
-        UI-->>G: choice → expanded explanation on the outcome screen
-    else p < 0.50 or shadow
-        G->>UI: v1 scene + risk chip
-    else model failed to load
-        G->>UI: "Model offline · v1 rules"
-    end
-    G->>G: log one anonymous row (features, choice, p, support)
-```
+<p align="center"><img src=".github/assets/sequence-v2.png" alt="Sequence when a crisis opens: the game builds 8 features, runs the ONNX model in the browser, and shows the support card if p is at least 0.50, the v1 scene otherwise, or the offline notice if the model did not load" width="85%"></p>
 
 ### Where each deliverable lives
 
